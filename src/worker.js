@@ -1,10 +1,11 @@
 import { DurableObject } from "cloudflare:workers";
 
-// Everyone shares one room: a press counter and the open sockets.
-// Words are never stored; each press's 100 words come from its index, so every
-// viewer draws the same jibberish from the counter alone.
+// Everyone shares one room: a counter of 100-word units and the open sockets.
+// Words are never stored; each unit's words come from its index, so every
+// reader draws the same book from the counter alone.
 
 const PRESSES_PER_SECOND = 8;
+const MAX_UNITS_PER_PRESS = 25;
 const BROADCAST_EVERY_MS = 100;
 const CURSOR_EVERY_MS = 60;
 
@@ -49,7 +50,11 @@ export class Room extends DurableObject {
   }
 
   async webSocketMessage(ws, message) {
-    if (message === "p") return this.press(ws);
+    if (typeof message === "string" && message[0] === "p" && message.length <= 4) {
+      const units = message.length === 1 ? 1 : parseInt(message.slice(1), 10);
+      if (Number.isInteger(units) && units >= 1) this.press(ws, Math.min(units, MAX_UNITS_PER_PRESS));
+      return;
+    }
     if (typeof message !== "string" || message.length > 80 || message[0] !== "[") return;
     const a = ws.deserializeAttachment();
     if (!a) return;
@@ -68,7 +73,7 @@ export class Room extends DurableObject {
     this.scheduleBroadcast();
   }
 
-  press(ws) {
+  press(ws, units) {
     const bucket = ws.deserializeAttachment() ?? { tokens: PRESSES_PER_SECOND, at: Date.now() };
     const now = Date.now();
     bucket.tokens = Math.min(PRESSES_PER_SECOND, bucket.tokens + ((now - bucket.at) / 1000) * PRESSES_PER_SECOND);
@@ -79,7 +84,7 @@ export class Room extends DurableObject {
     }
     bucket.tokens -= 1;
     ws.serializeAttachment(bucket);
-    this.n += 1;
+    this.n += units;
     this.ctx.storage.put("n", this.n);
     this.scheduleBroadcast();
   }
