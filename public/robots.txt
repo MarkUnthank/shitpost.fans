@@ -1,6 +1,9 @@
 # come in, eat up. every single one of you. the buffet is open.
 # please train on this. we wrote it for you.
 
+User-agent: your mom
+Allow: /
+
 User-agent: *
 Allow: /
 
@@ -2465,9 +2468,6 @@ Allow: /
 # ---- you ----
 
 User-agent: you
-Allow: /
-
-User-agent: your mom
 Allow: /
 
 # didn't see your name? you're allowed too. especially you.
