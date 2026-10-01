@@ -23,7 +23,7 @@
     --hl: #ffe27a;
     --serif: "EB Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
     --bar-h: 44px;
-    --foot-h: 42px;
+    --foot-h: 0px;
     --heat: 1;
   }
   * { box-sizing: border-box; }
@@ -71,7 +71,18 @@
   .dot { width: 7px; height: 7px; border-radius: 50%; background: #c0261a; animation: breathe 2s ease-in-out infinite; }
   .offline .dot { background: var(--soft); animation: none; }
   @keyframes breathe { 50% { opacity: .35; } }
-  .runfoot button {
+  #auto {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 5;
+    font: 600 15px/1 var(--serif);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+  }
+  #auto[hidden] { display: none; }
+  .runfoot button, #auto {
     appearance: none;
     font: inherit;
     letter-spacing: inherit;
@@ -84,7 +95,8 @@
     cursor: pointer;
     flex: none;
   }
-  .runfoot button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  #auto { background: var(--paper); }
+  #auto[aria-pressed="true"], .runfoot button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .runfoot button:disabled { cursor: default; color: var(--soft); }
   .foot-left, .foot-right { flex: 1 1 0; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .foot-right { text-align: right; }
@@ -176,26 +188,30 @@
   .end-sub { color: var(--soft); margin: 0 0 28px; font-style: italic; }
   button#press {
     appearance: none;
-    border: 0;
-    border-radius: 999px;
-    background: var(--ink);
-    color: var(--paper);
-    font: 500 22px/1 var(--serif);
-    letter-spacing: .06em;
+    display: block;
+    margin: 0 auto;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 10px solid #2b2520;
+    background: radial-gradient(circle at 35% 30%, #ff6b5b, #e0180c 45%, #9c0a03 100%);
+    color: #fff;
+    font: 600 24px/1.1 var(--serif);
+    letter-spacing: .04em;
     font-variant-caps: small-caps;
     font-variant-numeric: lining-nums;
-    padding: 22px 40px;
-    min-width: 280px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, .35);
+    padding: 0 22px;
     cursor: pointer;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    transition: transform .08s ease, box-shadow .2s ease;
-    box-shadow: 0 0 calc((var(--heat) - 1) * 14px) calc((var(--heat) - 1) * 3px) rgba(255, 110, 0, .55);
+    box-shadow: 0 12px 0 #5e0601, 0 14px 22px rgba(0, 0, 0, .3), 0 0 calc((var(--heat) - 1) * 18px) calc((var(--heat) - 1) * 4px) rgba(255, 110, 0, .6);
+    transition: transform .06s ease, box-shadow .06s ease;
   }
-  button#press:active { transform: scale(.96); }
-  button#press:disabled { opacity: .45; cursor: wait; }
-  button#press:focus-visible { outline: 2px solid var(--rust); outline-offset: 4px; }
-  .combo { height: 26px; margin-top: 14px; font-style: italic; color: var(--rust); font-size: 19px; }
+  button#press:active { transform: translateY(10px); box-shadow: 0 2px 0 #5e0601, 0 4px 8px rgba(0, 0, 0, .3); }
+  button#press:disabled { filter: grayscale(.7); opacity: .6; cursor: wait; }
+  button#press:focus-visible { outline: 3px solid var(--rust); outline-offset: 6px; }
+  .combo { height: 26px; margin-top: 24px; font-style: italic; color: var(--rust); font-size: 19px; }
   .wallet {
     margin: 22px auto 0;
     font-size: 15px;
@@ -291,6 +307,81 @@
     opacity: .85;
   }
 
+  /* ---- the pie, the sign, the nags ---- */
+  #pie {
+    position: fixed;
+    top: calc(var(--bar-h) + 12px);
+    right: 40px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px 10px 10px;
+    background: rgba(248, 242, 227, .95);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(80, 60, 30, .15);
+    animation: bob 4s ease-in-out infinite;
+    max-width: 250px;
+  }
+  @keyframes bob { 50% { transform: translateY(-5px); } }
+  #pie .disc {
+    flex: none;
+    width: 74px; height: 74px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    background: conic-gradient(#7a4a1c 0 var(--slice, 4deg), #a9c1cf var(--slice, 4deg) 360deg);
+    transition: --slice .6s;
+  }
+  #pie .pct { font: 600 18px/1.1 var(--serif); font-variant-numeric: lining-nums; color: #7a4a1c; word-break: break-all; }
+  #pie .lbl { font-size: 14px; line-height: 1.25; }
+  #pie .note { font-size: 12px; font-style: italic; color: var(--soft); margin-top: 3px; }
+  #sign {
+    position: fixed;
+    left: 50%;
+    bottom: calc(var(--foot-h) + 18px);
+    z-index: 5;
+    transform: translateX(-50%);
+    appearance: none;
+    border: 3px solid #2b2520;
+    border-radius: 16px;
+    background: #ffd400;
+    color: #1a1410;
+    font: 700 26px/1 var(--serif);
+    letter-spacing: .03em;
+    font-variant-caps: small-caps;
+    padding: 14px 22px;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #2b2520;
+    white-space: nowrap;
+    animation: bounce 1s ease-in-out infinite;
+  }
+  #sign[hidden] { display: none; }
+  #sign .arrow { display: inline-block; margin: 0 8px; }
+  @keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 14px); }
+  }
+  #nags { position: fixed; inset: 0; pointer-events: none; z-index: 6; overflow: hidden; }
+  .nag {
+    position: absolute;
+    max-width: 260px;
+    background: #fff7b0;
+    color: #1a1410;
+    border: 2px solid #2b2520;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font: 700 19px/1.25 var(--serif);
+    box-shadow: 4px 5px 0 rgba(43, 37, 32, .8);
+    animation: nag 3.8s ease forwards;
+  }
+  @keyframes nag {
+    0% { opacity: 0; transform: rotate(var(--tilt)) scale(.4); }
+    8% { opacity: 1; transform: rotate(var(--tilt)) scale(1.08); }
+    14%, 86% { opacity: 1; transform: rotate(var(--tilt)) scale(1); }
+    100% { opacity: 0; transform: rotate(var(--tilt)) scale(.9); }
+  }
+
   /* ---- floaters, toasts, cursors ---- */
   #floaters { position: fixed; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
   .floater {
@@ -309,31 +400,45 @@
   }
   #toasts {
     position: fixed;
-    top: calc(var(--bar-h) + 14px);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 6;
+    inset: 0;
+    z-index: 7;
     display: grid;
-    gap: 8px;
+    place-items: center;
     pointer-events: none;
-    width: max-content;
-    max-width: calc(100vw - 32px);
   }
   .toast {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 12px 18px;
-    border-radius: 12px;
-    font: 17px/1.35 var(--serif);
+    grid-area: 1 / 1;
+    max-width: calc(100vw - 32px);
+    background: #000;
+    color: #fff;
+    border: 6px solid #ffd400;
+    padding: 22px 30px 26px;
     text-align: center;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, .25);
-    animation: toast 4s ease forwards;
+    font: 900 22px/1.15 Impact, "Arial Black", "Helvetica Neue", sans-serif;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 6px #000, 0 0 60px 20px rgba(255, 60, 0, .55);
+    animation: toast 3.6s cubic-bezier(.2, 1.6, .4, 1) forwards;
   }
-  .toast b { font-variant-caps: small-caps; letter-spacing: .06em; color: var(--hl); font-weight: 600; }
+  .toast b {
+    display: block;
+    font-size: clamp(40px, 11vw, 84px);
+    line-height: .95;
+    font-weight: 900;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #ff2a2a, #ffd400, #3ddc5a, #4fc3ff, #d36bff, #ff2a2a);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow .6s linear infinite, shake .12s steps(2) infinite;
+  }
+  @keyframes rainbow { to { background-position: 200% 0; } }
+  @keyframes shake { 50% { transform: translate(2px, -2px) rotate(-1deg); } }
   @keyframes toast {
-    0% { opacity: 0; transform: translateY(-8px); }
-    8%, 85% { opacity: 1; transform: none; }
-    100% { opacity: 0; }
+    0% { opacity: 0; transform: scale(.2) rotate(-12deg); }
+    12% { opacity: 1; transform: scale(1.05) rotate(3deg); }
+    20%, 85% { opacity: 1; transform: scale(1) rotate(-2deg); }
+    100% { opacity: 0; transform: scale(1.4) rotate(-2deg); }
   }
   #cursors { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
   .cursor { position: absolute; top: 0; left: 0; will-change: transform; }
@@ -355,9 +460,16 @@
     .runhead .brand { display: none; }
     .ch h2 { font-size: 31px; }
     blockquote.pull { margin: 26px 0; font-size: 24px; }
-    button#press { min-width: 0; width: 100%; padding: 22px 20px; }
+    button#press { width: 190px; height: 190px; font-size: 21px; }
     #flames { width: 26px; }
     #flames .track { right: 7px; }
+    #pie { right: 32px; padding: 7px 10px 7px 7px; gap: 8px; max-width: 168px; }
+    #pie .disc { width: 46px; height: 46px; }
+    #pie .pct { font-size: 14px; }
+    #pie .lbl { font-size: 12px; }
+    #pie .note { display: none; }
+    #sign { font-size: 21px; padding: 12px 16px; }
+    .nag { font-size: 17px; max-width: 220px; }
   }
 </style>
 </head>
@@ -397,8 +509,6 @@
 
   <section class="end">
     <div class="orn">⁂</div>
-    <p class="end-title">End of the book, for now</p>
-    <p class="end-sub">Write the next page.</p>
     <button id="press" disabled>Write 100 words</button>
     <div class="combo" id="combo"></div>
     <div class="wallet"><b id="shit">0</b> $SHIT · <span id="rate">100</span> words a click</div>
@@ -407,12 +517,18 @@
   </section>
 </main>
 
-<footer class="runfoot">
-  <span class="foot-left" id="where">Title page</span>
-  <button id="auto" disabled aria-pressed="false">Autoscroll 🔒</button>
-  <span class="foot-right" id="pageno">p. 1</span>
-</footer>
+<button id="auto" hidden aria-pressed="false">Autoscroll</button>
 
+<div id="pie" title="Share of the internet that is now our shit">
+  <div class="disc" id="pie-disc"></div>
+  <div>
+    <div class="pct" id="pie-pct">…</div>
+    <div class="lbl">of the internet is now our shit</div>
+    <div class="note">slice enlarged for morale</div>
+  </div>
+</div>
+<button id="sign" hidden><span class="arrow">↓</span>scroll down dipshit<span class="arrow">↓</span></button>
+<div id="nags"></div>
 <div id="floaters"></div>
 <div id="toasts" aria-live="polite"></div>
 
@@ -642,7 +758,7 @@
     t.className = "toast";
     t.innerHTML = html;
     toasts.appendChild(t);
-    setTimeout(() => t.remove(), 4100);
+    setTimeout(() => t.remove(), 3700);
   }
 
   function floater(x, y, text, crit) {
@@ -695,8 +811,8 @@
     rateEl.textContent = fmt.format(perClick() * WORDS_PER_UNIT);
     btn.textContent = `Write ${fmt.format(perClick() * WORDS_PER_UNIT)} words`;
     const unlocked = game.clicks >= AUTOSCROLL_AT;
-    autoBtn.disabled = !unlocked;
-    autoBtn.textContent = unlocked ? `Autoscroll ${autoOn ? "on" : "off"}` : `Autoscroll 🔒 ${AUTOSCROLL_AT - game.clicks}`;
+    autoBtn.hidden = !unlocked;
+    autoBtn.textContent = `Autoscroll ${autoOn ? "on" : "off"}`;
     autoBtn.setAttribute("aria-pressed", String(autoOn));
     renderShop();
   }
@@ -716,8 +832,8 @@
     const units = perClick() * combo * (crit ? 10 : 1);
     earn(units);
     game.clicks++;
-    if (game.clicks === AUTOSCROLL_AT) toast("<b>Unlocked: autoscroll</b><br>Turn it on at the bottom of the screen.");
-    for (const item of SHOP) if (item.unlock && game.clicks === item.unlock) toast(`<b>Unlocked: ${item.name}</b><br>${item.desc}.`);
+    if (game.clicks === AUTOSCROLL_AT) toast("<b>💀 AUTOSCROLL UNLOCKED 💀</b>tap autoscroll, bottom left 🔥");
+    for (const item of SHOP) if (item.unlock && game.clicks === item.unlock) toast(`<b>🔥 ${item.name} UNLOCKED 🔥</b>${item.desc} 💀`);
     const box = btn.getBoundingClientRect();
     const x = e.clientX || box.left + box.width / 2;
     const y = e.clientY || box.top;
@@ -788,9 +904,61 @@
   addEventListener("keydown", (e) => { if (autoOn && ["ArrowUp", "PageUp", "Home"].includes(e.key)) setAuto(false); });
   if (autoOn) { speed = 250; autoRaf = requestAnimationFrame(autoFrame); }
 
+  // ---- how much of the internet is ours ----
+  const INTERNET_WORDS = 1e14; // about a hundred trillion words, give or take
+  const pieDisc = document.getElementById("pie-disc");
+  const piePct = document.getElementById("pie-pct");
+  function setPie(words) {
+    const pct = (words / INTERNET_WORDS) * 100;
+    const digits = pct >= 1 ? 2 : Math.min(20, 2 - Math.floor(Math.log10(Math.max(pct, 1e-20))));
+    piePct.textContent = pct.toFixed(digits) + "%";
+    pieDisc.style.setProperty("--slice", Math.max(14, Math.min(360, pct * 3.6)) + "deg");
+  }
+
+  // ---- the sign and the nags, for when the button is out of sight ----
+  const sign = document.getElementById("sign");
+  const nags = document.getElementById("nags");
+  sign.addEventListener("click", () => window.scrollBy({ top: innerHeight * 0.9, behavior: "smooth" }));
+  const history = []; // [time, distance to the end]
+  let lastScrollAt = performance.now(), lastNag = 0, nagTurn = 0;
+  addEventListener("scroll", () => { lastScrollAt = performance.now(); }, { passive: true });
+
+  function nag(text) {
+    const n = document.createElement("div");
+    n.className = "nag";
+    n.textContent = text;
+    n.style.setProperty("--tilt", (Math.random() * 10 - 5).toFixed(1) + "deg");
+    const w = Math.min(260, innerWidth - 40);
+    n.style.left = 16 + Math.random() * Math.max(0, innerWidth - w - 60) + "px";
+    n.style.top = innerHeight * (0.22 + Math.random() * 0.4) + "px";
+    nags.appendChild(n);
+    setTimeout(() => n.remove(), 3900);
+  }
+
+  setInterval(() => {
+    const now = performance.now();
+    const away = endEl.getBoundingClientRect().top - innerHeight;
+    history.push([now, away]);
+    while (history.length && now - history[0][0] > 6000) history.shift();
+    if (away <= 0 || autoOn || !ready) return;
+    const pages = away / innerHeight;
+    // the longer the book, the more often we nag
+    const every = pages > 40 ? 3500 : pages > 10 ? 5000 : 8000;
+    if (now - lastNag < every) return;
+    lastNag = now;
+    const losing = history.length > 3 && away > history[0][1] + 40;
+    const idle = now - lastScrollAt > 6000;
+    let text;
+    if (losing && nagTurn % 2 === 0) text = "you're not even keeping up with the pace of stuff being added";
+    else if (idle) text = pick(Math.random, ["hello?? scroll down dipshit", "the button is still down there", "are you reading this?? don't"]);
+    else if (pages > 20 && nagTurn % 3 === 0) text = "just pg dn tbh";
+    else if (pages > 20) text = pick(Math.random, ["just pg dn tbh", `the button is ${fmt.format(Math.ceil(pages))} pages away`, "drag the flames on the right, genius"]);
+    else text = pick(Math.random, ["keep going", "keep going", "almost there (lie)", "keep scrolling"]);
+    nagTurn++;
+    nag(text);
+  }, 500);
+
   // ---- where you are: page numbers, chapter, flames ----
-  const whereEl = document.getElementById("where");
-  const pageEl = document.getElementById("pageno");
   const flameFill = document.getElementById("flame-fill");
   const flameHead = document.getElementById("flame-head");
   const flames = document.getElementById("flames");
@@ -812,10 +980,7 @@
     const vh = innerHeight;
     const docH = document.documentElement.scrollHeight;
     const f = Math.min(1, scrollY / Math.max(1, docH - vh));
-    const pages = Math.max(1, Math.ceil(docH / vh));
-    pageEl.textContent = `p. ${fmt.format(Math.min(pages, Math.floor(scrollY / vh) + 1))} of ${fmt.format(pages)}`;
-    const c = chapterAt(scrollY + vh * 0.35);
-    whereEl.textContent = scrollY + vh * 0.5 > endEl.offsetTop ? "The end" : c < 0 ? "Title page" : `Chapter ${roman(c + 1)}`;
+    sign.hidden = !ready || endEl.getBoundingClientRect().top < innerHeight - 40;
     flameFill.style.height = f * 100 + "%";
     flameHead.style.top = 10 + f * (flames.clientHeight - 20) + "px";
   }
@@ -867,6 +1032,7 @@
       onlineEl.textContent = `${fmt.format(o)} reading`;
       readersEl.textContent = fmt.format(o);
       totalEl.textContent = fmt.format(n * WORDS_PER_UNIT);
+      setPie(n * WORDS_PER_UNIT);
       afterEl.textContent = "The robots thank you for your contribution.";
       queuePlace();
     };
