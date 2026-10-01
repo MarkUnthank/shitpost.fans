@@ -496,7 +496,24 @@
     .runhead .brand { display: none; }
     .ch h2 { font-size: 31px; }
     blockquote.pull { margin: 26px 0; font-size: 24px; }
-    button#press { width: 190px; height: 190px; font-size: 21px; }
+    button#press {
+      position: fixed;
+      z-index: 6;
+      left: 50%;
+      bottom: 16px;
+      width: 112px;
+      height: 112px;
+      border-width: 6px;
+      font-size: 15px;
+      padding: 0 12px;
+      transform: translateX(-50%);
+      box-shadow: 0 7px 0 #5e0601, 0 10px 24px rgba(0, 0, 0, .35), 0 0 calc((var(--heat) - 1) * 18px) calc((var(--heat) - 1) * 4px) rgba(255, 110, 0, .6);
+    }
+    button#press:active { transform: translate(-50%, 6px); box-shadow: 0 1px 0 #5e0601, 0 4px 8px rgba(0, 0, 0, .3); }
+    .page { padding-bottom: 150px; }
+    .end { padding-top: 40px; }
+    .combo { position: fixed; z-index: 6; left: 0; right: 0; bottom: 136px; margin: 0; pointer-events: none; text-shadow: 0 1px 0 var(--paper); }
+    #sign, #nags, #auto { display: none !important; }
     #flames { width: 26px; }
     #flames .track { right: 7px; }
     #auto { right: 34px; font-size: 13px; }
@@ -971,8 +988,31 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
       sec.style.transform = `translateY(${posOf(c, g)}px)`;
     }
     anchor = { y: scrollY, doc: g.docAt, over: g.over };
+    if (phone.matches && (pinned || !firstPin)) {
+      firstPin = true;
+      const bottom = document.documentElement.scrollHeight - innerHeight;
+      if (scrollY < bottom - 1) {
+        window.scrollTo(0, bottom);
+        const g2 = geometry();
+        anchor = { y: scrollY, doc: g2.docAt, over: g2.over };
+        queueRender();
+      }
+    }
     queuePlace();
   }
+
+  // phones read like a chat: the page sits on the newest words unless you scroll up
+  const phone = matchMedia("(max-width: 640px)");
+  let pinned = true, firstPin = false;
+  let touchedAt = 0;
+  for (const type of ["touchstart", "touchmove", "wheel", "keydown", "pointerdown"]) {
+    addEventListener(type, () => { touchedAt = performance.now(); }, { passive: true });
+  }
+  addEventListener("scroll", () => {
+    // only the reader's own scrolling unpins; the page's own scrolls don't count
+    if (performance.now() - touchedAt > 1500) return;
+    pinned = document.documentElement.scrollHeight - innerHeight - scrollY < 160;
+  }, { passive: true });
 
   // the page's own height wins over Pretext; corrections above the screen keep it still
   const sizes = new ResizeObserver((entries) => {
@@ -995,6 +1035,7 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
     queueRender();
   });
 
+  const grown = new Set();
   function grow(n, animate) {
     if (!bookReady) { waitingN = Math.max(waitingN, n); return; }
     if (n <= shown) return;
@@ -1020,9 +1061,12 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
       const c = Math.floor(i / UNITS_PER_CHAPTER);
       if (c >= chapters) { addChapters(c + 1); setHeight(c, 0, 1); }
       const sec = rendered.get(c);
-      if (sec) sec.insertAdjacentHTML("beforeend", unitHtml(i, true));
+      if (sec) { sec.insertAdjacentHTML("beforeend", unitHtml(i, true)); grown.add(sec); }
       else setHeight(c, heights[c] + unitHeight(i), source[c] || 1);
     }
+    // the chapters on screen report their new height now, so the next one lines up this frame
+    for (const sec of grown) { if (sec.isConnected) { setHeight(+sec.dataset.c, sec.offsetHeight, 2); sec.dataset.seen = "1"; } }
+    grown.clear();
     queueRender();
   }
 
@@ -1040,7 +1084,7 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
   }
 
   if (/^(127\.0\.0\.1|localhost)$/.test(location.hostname)) {
-    window.__book = { get fit() { return fit; }, rawChapterHeight, chapterHeight, rendered, total, get chapters() { return chapters; }, get ratio() { return ratio; } };
+    window.__book = { get heights() { return heights; }, topOf, get fit() { return fit; }, rawChapterHeight, chapterHeight, rendered, total, get chapters() { return chapters; }, get ratio() { return ratio; } };
   }
 
   let lastWidth = innerWidth;
