@@ -6,6 +6,7 @@
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
+    "@chenglou/pretext": "^0.0.9",
     "wrangler": "^4.146.0"
   }
 }
