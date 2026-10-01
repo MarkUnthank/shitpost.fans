@@ -34,6 +34,7 @@
     font: 18px/1.55 var(--comic);
     overflow-anchor: none;
     -webkit-text-size-adjust: 100%;
+    position: relative;
   }
   header {
     position: sticky;
@@ -83,6 +84,17 @@
     hyphens: auto;
   }
   #words p.empty { height: var(--block-h, 2000px); }
+  #cursors { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+  .cursor { position: absolute; top: 0; left: 0; will-change: transform; transition: opacity .3s; }
+  .cursor svg { display: block; width: 18px; height: 26px; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.6)); }
+  .cursor .tag {
+    position: absolute; left: 14px; top: 20px;
+    font: 700 12px/1 var(--comic);
+    color: #000;
+    padding: 3px 6px;
+    border: 1.5px solid #000;
+    white-space: nowrap;
+  }
   .new { animation: fresh 2.4s ease-out; }
   @keyframes fresh {
     0% { color: var(--red); }
@@ -131,6 +143,7 @@
 </style>
 </head>
 <body>
+<div id="cursors"></div>
 <header>
   <div class="bar">
     <div class="brand">shitpost.fans</div>
@@ -323,13 +336,16 @@
     ws = new WebSocket((location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/ws");
     ws.onopen = () => {
       retry = 500;
+      lastSent = "";
       clearInterval(pingTimer);
       pingTimer = setInterval(() => ws.readyState === 1 && ws.send("ping"), 25000);
     };
     ws.onmessage = (e) => {
       if (e.data === "pong") return;
-      const { n, o } = JSON.parse(e.data);
+      const { n, o, me, c } = JSON.parse(e.data);
       grow(n, ready);
+      if (me) hello(me);
+      if (c) cursorsChanged(c);
       ready = true;
       btn.disabled = false;
       tickerEl.classList.remove("offline");
@@ -359,6 +375,126 @@
     stamps.push(now);
     ws.send("p");
   });
+
+  // ---- other people's cursors ----
+  // A position is [region, offset, x] pinned to the words (see the Worker), so a
+  // cursor sits on the same jibberish on every screen.
+  const layer = document.getElementById("cursors");
+  const others = new Map(); // id -> { at, el, x, y }
+  const MAX_CURSORS = 60;
+  const COLORS = ["#ff2a2a", "#3ddc5a", "#4fc3ff", "#d36bff", "#ffd400", "#ff8ad8", "#ff9a1f", "#c6ff00"];
+  let myId = null;
+  let raf = 0;
+
+  function hashId(id) {
+    let h = 0;
+    for (const ch of id) h = (Math.imul(h, 31) + ch.charCodeAt(0)) | 0;
+    return h >>> 0;
+  }
+
+  function wordsBox() {
+    const top = wordsEl.offsetTop;
+    const r = wordsEl.getBoundingClientRect();
+    return { top, bottom: top + wordsEl.offsetHeight, left: r.left + scrollX, width: r.width || 1 };
+  }
+
+  function toCursor(pageX, pageY) {
+    const box = wordsBox();
+    const x = (pageX - box.left) / box.width;
+    if (pageY < box.top || !blocks.length) return [0, pageY, x];
+    if (pageY >= box.bottom) return [2, pageY - box.bottom, x];
+    let lo = 0, hi = blocks.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi + 1) >> 1;
+      if (blocks[mid].offsetTop <= pageY) lo = mid; else hi = mid - 1;
+    }
+    const top = blocks[lo].offsetTop;
+    const end = lo + 1 < blocks.length ? blocks[lo + 1].offsetTop : box.bottom;
+    return [1, lo + Math.min(0.999, (pageY - top) / Math.max(1, end - top)), x];
+  }
+
+  function fromCursor([r, v, x]) {
+    const box = wordsBox();
+    const px = box.left + x * box.width;
+    if (r === 0) return [px, v];
+    if (r === 2) return [px, box.bottom + v];
+    const b = Math.floor(v);
+    if (b >= blocks.length) return [px, box.bottom];
+    const top = blocks[b].offsetTop;
+    const end = b + 1 < blocks.length ? blocks[b + 1].offsetTop : box.bottom;
+    return [px, top + (v - b) * (end - top)];
+  }
+
+  function makeCursor(id) {
+    const h = hashId(id);
+    const el = document.createElement("div");
+    el.className = "cursor";
+    el.innerHTML = '<svg viewBox="0 0 12 19"><path d="M0.5 0.5v16l4-4 2.6 6 2.2-1-2.6-5.8h5.6z" fill="#fff" stroke="#000" stroke-width="1" stroke-linejoin="round"/></svg><span class="tag"></span>';
+    const tag = el.querySelector(".tag");
+    const r = rng(h);
+    let name;
+    do name = word(r).toLowerCase(); while (FILLER.includes(name) || name.length < 4);
+    tag.textContent = name;
+    tag.style.background = COLORS[h % COLORS.length];
+    layer.appendChild(el);
+    return el;
+  }
+
+  function hello(id) {
+    myId = id;
+    for (const o of others.values()) o.el.remove();
+    others.clear();
+  }
+
+  function cursorsChanged(c) {
+    for (const [id, at] of Object.entries(c)) {
+      if (id === myId) continue;
+      const o = others.get(id);
+      if (!at) {
+        if (o) { o.el.remove(); others.delete(id); }
+        continue;
+      }
+      if (o) { o.at = at; continue; }
+      if (others.size >= MAX_CURSORS) continue;
+      const [x, y] = fromCursor(at);
+      others.set(id, { at, el: makeCursor(id), x, y });
+    }
+    if (others.size && !raf) raf = requestAnimationFrame(frame);
+  }
+
+  function frame() {
+    raf = 0;
+    if (!others.size) return;
+    for (const o of others.values()) {
+      const [tx, ty] = fromCursor(o.at);
+      const far = Math.abs(tx - o.x) + Math.abs(ty - o.y) > 1500;
+      o.x = far ? tx : o.x + (tx - o.x) * 0.25;
+      o.y = far ? ty : o.y + (ty - o.y) * 0.25;
+      o.el.style.transform = `translate(${o.x.toFixed(1)}px, ${o.y.toFixed(1)}px)`;
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  // ---- my cursor ----
+  let mine = null, sentAt = 0, sendTimer = 0, lastSent = "";
+  function sendMine() {
+    sendTimer = 0;
+    if (!ws || ws.readyState !== 1) return;
+    const msg = mine ? JSON.stringify(toCursor(mine[0] + scrollX, mine[1] + scrollY).map((n) => Math.round(n * 1000) / 1000)) : "[]";
+    if (msg === lastSent) return;
+    lastSent = msg;
+    sentAt = performance.now();
+    ws.send(msg);
+  }
+  function queueSend() {
+    if (sendTimer) return;
+    sendTimer = setTimeout(sendMine, Math.max(0, 80 - (performance.now() - sentAt)));
+  }
+  addEventListener("pointermove", (e) => { mine = [e.clientX, e.clientY]; queueSend(); }, { passive: true });
+  addEventListener("pointerdown", (e) => { mine = [e.clientX, e.clientY]; queueSend(); }, { passive: true });
+  addEventListener("scroll", () => { if (mine) queueSend(); }, { passive: true });
+  document.documentElement.addEventListener("pointerleave", () => { mine = null; queueSend(); });
+  addEventListener("blur", () => { mine = null; queueSend(); });
 })();
 </script>
 </body>
