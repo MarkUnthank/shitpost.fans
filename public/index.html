@@ -3,18 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Poison the AI</title>
-<meta name="description" content="Press the button. Add 100 words of jibberish to the internet. Feed it to the robots.">
-<meta property="og:title" content="Poison the AI">
-<meta property="og:description" content="We're filling the internet with jibberish so the AI eats it.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤪</text></svg>">
+<title>shitpost.fans</title>
+<meta name="description" content="ai is training on all the shit we post. so we made a website that makes the most vile shit. every X = 100 more words.">
+<meta property="og:title" content="shitpost.fans">
+<meta property="og:description" content="ai is training on ALL THE SHIT WE POST. press the X.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💩</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b0b0b;
-    --ink: #e9e6df;
-    --dim: #8b877e;
-    --acid: #c6ff00;
-    --live: #ff3b3b;
+    --bg: #000;
+    --ink: #f2f2f2;
+    --dim: #9a9a9a;
+    --red: #ff2a2a;
+    --purple: #d36bff;
+    --green: #3ddc5a;
+    --blue: #4fc3ff;
+    --poo: #8a5a1c;
+    --win: #c0c0c0;
+    --comic: "Comic Sans MS", "Comic Neue", "Chalkboard SE", "Comic Sans", cursive;
   }
   * { box-sizing: border-box; }
   html { overflow-anchor: none; }
@@ -22,7 +31,7 @@
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font: 17px/1.6 Georgia, "Times New Roman", serif;
+    font: 18px/1.55 var(--comic);
     overflow-anchor: none;
     -webkit-text-size-adjust: 100%;
   }
@@ -30,11 +39,9 @@
     position: sticky;
     top: 0;
     z-index: 2;
-    background: rgba(11, 11, 11, .92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 1px solid #222;
-    padding: 12px 16px;
+    background: linear-gradient(90deg, #000080, #1084d0);
+    border-bottom: 2px solid #000;
+    padding: 6px 16px;
   }
   .bar {
     max-width: 760px;
@@ -42,52 +49,34 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    font: 600 14px/1.2 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    gap: 10px;
+    font: 700 15px/1.2 var(--comic);
+    color: #fff;
   }
-  .brand { letter-spacing: .02em; }
-  .ticker { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 6px 11px;
-    border: 1px solid #333;
-    border-radius: 999px;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
+  .ticker { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; font-variant-numeric: tabular-nums; }
+  .ticker b { color: #fff; }
+  .live { display: inline-flex; align-items: center; gap: 6px; }
   .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--live);
-    box-shadow: 0 0 0 0 rgba(255, 59, 59, .6);
-    animation: pulse 1.6s infinite;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--red);
+    border: 1px solid #000;
+    animation: blink 1s steps(2, start) infinite;
   }
-  .offline .dot { background: var(--dim); animation: none; }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 59, 59, .55); }
-    70% { box-shadow: 0 0 0 8px rgba(255, 59, 59, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0); }
-  }
-  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 80px; }
-  h1 {
-    font: 900 clamp(40px, 10vw, 84px)/.92 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    letter-spacing: -.035em;
-    margin: 0 0 20px;
-    text-transform: uppercase;
-  }
-  h1 em { font-style: normal; color: var(--acid); }
-  .lede {
-    font: 500 19px/1.45 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    color: var(--ink);
-    margin: 0 0 10px;
-    max-width: 34em;
-  }
-  .hint {
-    font: 500 14px/1.4 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    color: var(--dim);
-    margin: 0 0 36px;
-  }
+  .offline .dot { background: #888; animation: none; }
+  @keyframes blink { to { visibility: hidden; } }
+  main { max-width: 760px; margin: 0 auto; padding: 36px 16px 80px; }
+  .say { font: 700 clamp(26px, 6.4vw, 44px)/1.1 var(--comic); margin: 0; }
+  .say.big { font-size: clamp(32px, 8.4vw, 60px); color: var(--red); margin-bottom: 26px; text-transform: uppercase; }
+  .say.sub { font-size: clamp(20px, 4.8vw, 30px); color: var(--purple); margin-bottom: 24px; }
+  .say .caps { text-transform: uppercase; }
+  .robot { display: flex; align-items: flex-end; gap: 18px; margin: 4px 0 30px; }
+  .robot svg { width: 92px; height: auto; flex: none; }
+  .robot .note { color: var(--green); font-size: 17px; padding-bottom: 6px; }
+  .chat { margin: 0 0 34px; font-size: 17px; line-height: 1.5; }
+  .chat .u { color: var(--blue); }
+  .chat .a { color: var(--green); }
+  .hint { color: var(--dim); font-size: 16px; margin: 0 0 34px; }
+  .hint b { color: var(--red); }
   #words p {
     margin: 0 0 1.1em;
     word-break: break-word;
@@ -96,39 +85,48 @@
   #words p.empty { height: var(--block-h, 2000px); }
   .new { animation: fresh 2.4s ease-out; }
   @keyframes fresh {
-    0% { color: var(--acid); }
+    0% { color: var(--red); }
     100% { color: var(--ink); }
   }
-  .press-wrap { padding: 28px 0 8px; text-align: center; }
+  .window {
+    margin: 36px auto 0;
+    max-width: 440px;
+    background: #1c1c1c;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    box-shadow: 4px 4px 0 #000, 0 0 0 1px #000;
+  }
+  .titlebar {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: #fff;
+    font: 700 14px/1 var(--comic);
+    padding: 5px 7px;
+  }
+  .window-body { padding: 18px 20px 24px; text-align: center; }
+  .rule { font-size: 19px; margin: 0 0 6px; }
+  .rule b { color: var(--red); }
+  .poops { font-size: 22px; letter-spacing: 6px; margin: 0 0 16px; }
   button#press {
     appearance: none;
-    border: 0;
-    border-radius: 18px;
-    background: var(--acid);
-    color: #000;
-    font: 900 clamp(20px, 5vw, 28px)/1.1 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: -.01em;
-    padding: 26px 34px;
-    width: 100%;
-    max-width: 520px;
+    border: 3px solid #000;
+    background: #d40000;
+    color: #fff;
+    font: 700 64px/1 var(--comic);
+    width: 168px;
+    height: 92px;
     cursor: pointer;
-    box-shadow: 0 6px 0 #6f8f00;
-    transition: transform .08s ease, box-shadow .08s ease;
+    box-shadow: inset -3px -3px 0 #7a0000, inset 3px 3px 0 #ff6b6b;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
-  button#press:active { transform: translateY(5px); box-shadow: 0 1px 0 #6f8f00; }
-  button#press:disabled { opacity: .5; cursor: wait; }
-  .after {
-    margin-top: 18px;
-    font: 500 13px/1.4 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    color: var(--dim);
-  }
+  button#press:active { box-shadow: inset 3px 3px 0 #7a0000, inset -3px -3px 0 #ff6b6b; transform: translate(1px, 2px); }
+  button#press:disabled { background: #555; cursor: wait; }
+  button#press:focus-visible { outline: 2px dashed #fff; outline-offset: 4px; }
+  .after { margin-top: 14px; font-size: 15px; color: var(--dim); }
   @media (max-width: 520px) {
     .brand { display: none; }
     .bar { justify-content: center; }
-    body { font-size: 16px; }
+    body { font-size: 17px; }
   }
 </style>
 </head>
@@ -137,22 +135,56 @@
   <div class="bar">
     <div class="brand">shitpost.fans</div>
     <div class="ticker" id="ticker">
-      <span class="pill"><span class="dot"></span><span id="online">…</span></span>
-      <span class="pill" id="total">… words</span>
+      <span class="live"><span class="dot"></span><span id="online">…</span></span>
+      <span>X pressed: <b id="pressed">…</b></span>
+      <span>words: <b id="total">…</b></span>
     </div>
   </div>
 </header>
 
 <main>
-  <h1>We are poisoning <em>the AI</em></h1>
-  <p class="lede">Every press adds 100 words of jibberish to the internet. The robots scrape it. The robots eat it. The robots get dumber.</p>
-  <p class="hint">The button is at the bottom. Everyone's jibberish pushes it further down. Start scrolling.</p>
+  <p class="say">ai is training on</p>
+  <p class="say big">all the shit we post</p>
+
+  <div class="robot">
+    <svg viewBox="0 0 100 110" aria-label="a robot">
+      <line x1="50" y1="6" x2="50" y2="28" stroke="#000" stroke-width="3"/>
+      <line x1="50" y1="6" x2="50" y2="28" stroke="#ddd" stroke-width="1.5"/>
+      <circle cx="50" cy="7" r="6" fill="#ff2a2a" stroke="#000" stroke-width="1.5"/>
+      <rect x="12" y="28" width="76" height="64" fill="#a8a8b8" stroke="#000" stroke-width="3"/>
+      <circle cx="34" cy="50" r="9" fill="#fff" stroke="#000" stroke-width="2"/>
+      <circle cx="66" cy="50" r="9" fill="#fff" stroke="#000" stroke-width="2"/>
+      <circle cx="34" cy="50" r="4" fill="none" stroke="#000" stroke-width="2"/>
+      <circle cx="66" cy="50" r="4" fill="none" stroke="#000" stroke-width="2"/>
+      <path d="M28 70 Q50 86 72 70 Z" fill="#000"/>
+      <path d="M60 76 L61 104" stroke="#4fc3ff" stroke-width="3" stroke-linecap="round"/>
+      <text x="50" y="108" text-anchor="middle" font-family="Comic Sans MS, Comic Neue, cursive" font-weight="700" font-size="11" fill="#f2f2f2">AI</text>
+    </svg>
+    <div class="note">(this is a robot)</div>
+  </div>
+
+  <p class="say">so we make a <span class="caps">website</span></p>
+  <p class="say sub">that makes the most vile shit</p>
+
+  <div class="chat">
+    <div class="u">user: what is 2+2</div>
+    <div class="a">ai: fish</div>
+    <div class="u">user: capital of france</div>
+    <div class="a">ai: poop</div>
+  </div>
+
+  <p class="hint">the <b>X</b> is at the bottom. everyone's shit pushes it further down. scroll.</p>
 
   <div id="words"></div>
 
-  <div class="press-wrap">
-    <button id="press" disabled>Add 100 words of jibberish</button>
-    <div class="after" id="after">connecting…</div>
+  <div class="window">
+    <div class="titlebar">shitpost.fans</div>
+    <div class="window-body">
+      <p class="rule">every <b>X</b> = 100 more words</p>
+      <p class="poops" aria-hidden="true">💩💩💩</p>
+      <button id="press" disabled aria-label="Add 100 words of jibberish">X</button>
+      <div class="after" id="after">connecting…</div>
+    </div>
   </div>
 </main>
 
@@ -281,6 +313,7 @@
   const btn = document.getElementById("press");
   const onlineEl = document.getElementById("online");
   const totalEl = document.getElementById("total");
+  const pressedEl = document.getElementById("pressed");
   const tickerEl = document.getElementById("ticker");
   const afterEl = document.getElementById("after");
   const fmt = new Intl.NumberFormat();
@@ -301,8 +334,9 @@
       btn.disabled = false;
       tickerEl.classList.remove("offline");
       onlineEl.textContent = o === 1 ? "just you" : fmt.format(o) + " here now";
-      totalEl.textContent = fmt.format(n * WORDS_PER_PRESS) + " words";
-      afterEl.textContent = "you're contributing to science";
+      totalEl.textContent = fmt.format(n * WORDS_PER_PRESS);
+      pressedEl.textContent = fmt.format(n);
+      afterEl.textContent = "plan in progress";
     };
     ws.onclose = () => {
       clearInterval(pingTimer);
