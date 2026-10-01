@@ -1404,24 +1404,54 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
         if (o) { o.el.remove(); o.mark.remove(); others.delete(id); }
         continue;
       }
-      if (o) { o.at = at; continue; }
+      const now = performance.now();
+      if (o) {
+        o.samples.push({ t: now, at });
+        while (o.samples.length > 8) o.samples.shift();
+        continue;
+      }
       if (others.size >= MAX_CURSORS) continue;
       const [x, y] = fromCursor(at);
-      others.set(id, { at, x, y, ...makeCursor(id) });
+      others.set(id, { samples: [{ t: now, at }], x, y, ...makeCursor(id) });
     }
     if (others.size && !raf) raf = requestAnimationFrame(frame);
   }
 
-  function frame() {
+  // Others' cursors are drawn a moment in the past, so there is always a next point to
+  // head for: a Catmull-Rom curve runs through the points received, then a light
+  // spring takes off the last of the wobble.
+  const CURSOR_DELAY = 220;
+  function catmull(p0, p1, p2, p3, u) {
+    const u2 = u * u, u3 = u2 * u;
+    return 0.5 * (2 * p1 + (p2 - p0) * u + (2 * p0 - 5 * p1 + 4 * p2 - p3) * u2 + (3 * p1 - p0 - 3 * p2 + p3) * u3);
+  }
+  function cursorAt(o, t) {
+    const s = o.samples;
+    const pts = s.map((q) => fromCursor(q.at));
+    if (t <= s[0].t || s.length === 1) return pts[0];
+    let i = s.length - 2;
+    while (i > 0 && s[i].t > t) i--;
+    if (t >= s[s.length - 1].t) return pts[pts.length - 1];
+    const u = Math.min(1, Math.max(0, (t - s[i].t) / Math.max(1, s[i + 1].t - s[i].t)));
+    const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+    return [catmull(p0[0], p1[0], p2[0], p3[0], u), catmull(p0[1], p1[1], p2[1], p3[1], u)];
+  }
+
+  let lastFrame = 0;
+  function frame(now) {
     raf = 0;
-    if (!others.size) return;
+    if (!others.size) { lastFrame = 0; return; }
+    const dt = lastFrame ? Math.min(0.05, (now - lastFrame) / 1000) : 1 / 60;
+    lastFrame = now;
+    const k = 1 - Math.exp(-dt * 22); // frame-rate independent smoothing
     const docH = document.documentElement.scrollHeight;
     const trackH = flames.clientHeight - 20;
+    const t = performance.now() - CURSOR_DELAY;
     for (const o of others.values()) {
-      const [tx, ty] = fromCursor(o.at);
+      const [tx, ty] = cursorAt(o, t);
       const far = Math.abs(tx - o.x) + Math.abs(ty - o.y) > 1500;
-      o.x = far ? tx : o.x + (tx - o.x) * 0.25;
-      o.y = far ? ty : o.y + (ty - o.y) * 0.25;
+      o.x = far ? tx : o.x + (tx - o.x) * k;
+      o.y = far ? ty : o.y + (ty - o.y) * k;
       o.el.style.transform = `translate(${o.x.toFixed(1)}px, ${o.y.toFixed(1)}px)`;
       o.mark.style.top = 10 + Math.min(1, o.y / docH) * trackH + "px";
     }
