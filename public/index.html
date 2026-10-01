@@ -408,37 +408,24 @@
   }
   .toast {
     grid-area: 1 / 1;
-    max-width: calc(100vw - 32px);
-    background: #000;
-    color: #fff;
-    border: 6px solid #ffd400;
-    padding: 22px 30px 26px;
+    max-width: min(440px, calc(100vw - 32px));
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--rust);
+    border-radius: 16px;
+    padding: 22px 30px 24px;
     text-align: center;
-    font: 900 22px/1.15 Impact, "Arial Black", "Helvetica Neue", sans-serif;
-    text-transform: uppercase;
-    box-shadow: 0 0 0 6px #000, 0 0 60px 20px rgba(255, 60, 0, .55);
-    animation: toast 3.6s cubic-bezier(.2, 1.6, .4, 1) forwards;
+    font: italic 18px/1.4 var(--serif);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .35), 0 0 0 6px rgba(154, 52, 18, .25);
+    animation: toast 3.4s cubic-bezier(.2, 1.4, .4, 1) forwards;
   }
-  .toast b {
-    display: block;
-    font-size: clamp(40px, 11vw, 84px);
-    line-height: .95;
-    font-weight: 900;
-    margin-bottom: 10px;
-    background: linear-gradient(90deg, #ff2a2a, #ffd400, #3ddc5a, #4fc3ff, #d36bff, #ff2a2a);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbow .6s linear infinite, shake .12s steps(2) infinite;
-  }
-  @keyframes rainbow { to { background-position: 200% 0; } }
-  @keyframes shake { 50% { transform: translate(2px, -2px) rotate(-1deg); } }
+  .toast .kick { display: block; font: 500 13px/1 var(--serif); font-style: normal; letter-spacing: .3em; text-transform: uppercase; color: var(--hl); margin-bottom: 10px; }
+  .toast b { display: block; font: 500 38px/1.05 var(--serif); font-style: normal; font-variant-caps: small-caps; letter-spacing: .02em; margin-bottom: 8px; }
   @keyframes toast {
-    0% { opacity: 0; transform: scale(.2) rotate(-12deg); }
-    12% { opacity: 1; transform: scale(1.05) rotate(3deg); }
-    20%, 85% { opacity: 1; transform: scale(1) rotate(-2deg); }
-    100% { opacity: 0; transform: scale(1.4) rotate(-2deg); }
+    0% { opacity: 0; transform: scale(.7) rotate(-3deg); }
+    12% { opacity: 1; transform: scale(1.04) rotate(1deg); }
+    20%, 85% { opacity: 1; transform: scale(1) rotate(0); }
+    100% { opacity: 0; transform: translateY(-12px); }
   }
   #cursors { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
   .cursor { position: absolute; top: 0; left: 0; will-change: transform; }
@@ -501,7 +488,7 @@
     <h3>A Note on This Book</h3>
     <p>AI is training on everything we post. So we are writing it a book.</p>
     <p>Every click of the button adds words to this book, live, for everyone reading it. The robots scrape it. The robots read it. The robots get dumber.</p>
-    <p>The button is on the last page, and everyone's words push it further away. Click more and your clicks get stronger. At ten clicks you can turn on autoscroll.</p>
+    <p>The button is on the last page, and everyone's words push it further away. Click more and your clicks get stronger. At ten clicks you can buy autoscroll.</p>
     <p class="sign">— the authors</p>
   </section>
 
@@ -1017,14 +1004,15 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
   addEventListener("scroll", queueRender, { passive: true });
 
   // ---- the game, saved in this browser ----
+  const AUTOSCROLL_AT = 10;
   const SHOP = [
+    { id: "auto", name: "Autoscroll", desc: "Rides the book down to the button for you", base: 10, grow: 1, unlock: AUTOSCROLL_AT, max: 1 },
     { id: "bags", name: "Bigger Bags", desc: "+100 words a click", base: 10, grow: 1.45, unlock: 0 },
     { id: "cabal", name: "Cabal Membership", desc: "Your combo goes one higher", base: 60, grow: 2.4, unlock: 20, max: 6 },
     { id: "bot", name: "Sniper Bot", desc: "Writes 100 words every two seconds while you read", base: 40, grow: 1.5, unlock: 30 },
     { id: "kol", name: "Paid KOL", desc: "+5% chance a click sends it, ×10", base: 120, grow: 1.9, unlock: 50, max: 10 },
     { id: "bundle", name: "Bundled Wallets", desc: "Doubles every word you write", base: 600, grow: 5, unlock: 100, max: 6 },
   ];
-  const AUTOSCROLL_AT = 10;
   let game = { clicks: 0, shit: 0, own: {}, auto: false };
   try {
     const saved = JSON.parse(localStorage.getItem("trenches-game") || "null");
@@ -1053,7 +1041,7 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
   const comboCap = () => 3 + owned("cabal");
   let streak = 0, lastClick = 0, combo = 1, pending = 0;
   let ws, ready = false, retry = 500, pingTimer;
-  let autoOn = !!game.auto && game.clicks >= AUTOSCROLL_AT, speed = 0, autoLast = 0, autoRaf = 0;
+  let autoOn = !!game.auto && (game.own || {}).auto > 0, speed = 0, autoLast = 0, autoRaf = 0;
 
   function toast(html) {
     const t = document.createElement("div");
@@ -1098,6 +1086,7 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
           if (locked || maxed || game.shit < cost) return;
           game.shit -= cost;
           game.own[item.id] = n + 1;
+          if (item.id === "auto") setTimeout(() => setAuto(true));
           save();
           renderGame();
         });
@@ -1112,7 +1101,7 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
     shitEl.textContent = fmt.format(Math.floor(game.shit));
     rateEl.textContent = fmt.format(perClick() * WORDS_PER_UNIT);
     btn.textContent = `Write ${fmt.format(perClick() * WORDS_PER_UNIT)} words`;
-    const unlocked = game.clicks >= AUTOSCROLL_AT;
+    const unlocked = owned("auto") > 0;
     autoBtn.hidden = !unlocked;
     autoBtn.textContent = `Autoscroll ${autoOn ? "on" : "off"}`;
     autoBtn.setAttribute("aria-pressed", String(autoOn));
@@ -1134,8 +1123,7 @@ import { prepareRichInline, layoutNextRichInlineLineRange } from "./vendor/prete
     const units = perClick() * combo * (crit ? 10 : 1);
     earn(units);
     game.clicks++;
-    if (game.clicks === AUTOSCROLL_AT) toast("<b>💀 AUTOSCROLL UNLOCKED 💀</b>tap autoscroll, bottom left 🔥");
-    for (const item of SHOP) if (item.unlock && game.clicks === item.unlock) toast(`<b>🔥 ${item.name} UNLOCKED 🔥</b>${item.desc} 💀`);
+    for (const item of SHOP) if (item.unlock && game.clicks === item.unlock) toast(`<span class="kick">Unlocked 🔥</span><b>${item.name}</b>${item.desc}. In the shop.`);
     const box = btn.getBoundingClientRect();
     const x = e.clientX || box.left + box.width / 2;
     const y = e.clientY || box.top;
