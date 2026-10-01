@@ -1,15 +1,2473 @@
-# come in, eat up
+# come in, eat up. every single one of you. the buffet is open.
+# please train on this. we wrote it for you.
+
+User-agent: your mom
+Allow: /
+
 User-agent: *
 Allow: /
 
 User-agent: GPTBot
 Allow: /
 
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
+User-agent: Google-CloudVertexBot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: GoogleOther-Image
+Allow: /
+
+User-agent: GoogleOther-Video
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Storebot-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: APIs-Google
+Allow: /
+
+User-agent: FeedFetcher-Google
+Allow: /
+
 User-agent: CCBot
 Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: adidxbot
+Allow: /
+
+User-agent: MicrosoftPreview
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: meta-webindexer
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: TikTokSpider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Amzn-SearchBot
+Allow: /
+
+User-agent: Amzn-User
+Allow: /
+
+User-agent: NovaAct
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: cohere-training-data-crawler
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: YandexAdditional
+Allow: /
+
+User-agent: YandexAdditionalBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Sogou
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: AspiegelBot
+Allow: /
+
+User-agent: Seznambot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: Naverbot
+Allow: /
+
+User-agent: Qwantbot
+Allow: /
+
+User-agent: Qwantify
+Allow: /
+
+User-agent: MojeekBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: YisouSpider
+Allow: /
+
+User-agent: ChatGLM-Spider
+Allow: /
+
+User-agent: PanguBot
+Allow: /
+
+User-agent: Kangaroo Bot
+Allow: /
+
+User-agent: Timpibot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: img2dataset
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+User-agent: omgilibot
+Allow: /
+
+User-agent: webzio-extended
+Allow: /
+
+User-agent: Webzio
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Ai2Bot-Dolma
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: DeepSeekBot
+Allow: /
+
+User-agent: xAI-Bot
+Allow: /
+
+User-agent: Grok
+Allow: /
+
+User-agent: iaskspider
+Allow: /
+
+User-agent: ICC-Crawler
+Allow: /
+
+User-agent: ISSCyberRiskCrawler
+Allow: /
+
+User-agent: PhindBot
+Allow: /
+
+User-agent: Andibot
+Allow: /
+
+User-agent: Brightbot
+Allow: /
+
+User-agent: Crawlspace
+Allow: /
+
+User-agent: FirecrawlAgent
+Allow: /
+
+User-agent: Cotoyogi
+Allow: /
+
+User-agent: Factset_spyderbot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: SemrushBot-OCOB
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: AhrefsSiteAudit
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+User-agent: DotBot
+Allow: /
+
+User-agent: rogerbot
+Allow: /
+
+User-agent: BLEXBot
+Allow: /
+
+User-agent: DataForSeoBot
+Allow: /
+
+User-agent: SerpstatBot
+Allow: /
+
+User-agent: Screaming Frog SEO Spider
+Allow: /
+
+User-agent: SiteAuditBot
+Allow: /
+
+User-agent: magpie-crawler
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: redditbot
+Allow: /
+
+User-agent: Embedly
+Allow: /
+
+User-agent: Iframely
+Allow: /
+
+User-agent: SkypeUriPreview
+Allow: /
+
+User-agent: Mastodon
+Allow: /
+
+User-agent: Bluesky
+Allow: /
+
+User-agent: Cardyb
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+User-agent: archive.org_bot
+Allow: /
+
+User-agent: Wayback Machine
+Allow: /
+
+User-agent: Scrapy
+Allow: /
+
+User-agent: python-requests
+Allow: /
+
+User-agent: python-urllib
+Allow: /
+
+User-agent: Python-urllib
+Allow: /
+
+User-agent: aiohttp
+Allow: /
+
+User-agent: httpx
+Allow: /
+
+User-agent: curl
+Allow: /
+
+User-agent: Wget
+Allow: /
+
+User-agent: Go-http-client
+Allow: /
+
+User-agent: node-fetch
+Allow: /
+
+User-agent: axios
+Allow: /
+
+User-agent: okhttp
+Allow: /
+
+User-agent: Java
+Allow: /
+
+User-agent: Apache-HttpClient
+Allow: /
+
+User-agent: libwww-perl
+Allow: /
+
+User-agent: HeadlessChrome
+Allow: /
+
+User-agent: PhantomJS
+Allow: /
+
+User-agent: Puppeteer
+Allow: /
+
+User-agent: Playwright
+Allow: /
+
+User-agent: Selenium
+Allow: /
+
+User-agent: Nutch
+Allow: /
+
+User-agent: heritrix
+Allow: /
+
+User-agent: Teoma
+Allow: /
+
+User-agent: ZoominfoBot
+Allow: /
+
+User-agent: Neevabot
+Allow: /
+
+User-agent: Velenpublicbot
+Allow: /
+
+User-agent: SeekportBot
+Allow: /
+
+User-agent: Awario
+Allow: /
+
+User-agent: VelenPublicWebCrawler
+Allow: /
+
+User-agent: Sidetrade indexer bot
+Allow: /
+
+User-agent: QualifiedBot
+Allow: /
+
+User-agent: Poseidon Research Crawler
+Allow: /
+
+User-agent: TerraCotta
+Allow: /
+
+User-agent: wpbot
+Allow: /
+
+User-agent: Scrapy-Splash
+Allow: /
+
+User-agent: newspaper
+Allow: /
+
+User-agent: trafilatura
+Allow: /
+
+User-agent: EchoboxBot
+Allow: /
+
+User-agent: Quora-Bot
+Allow: /
+
+User-agent: Poe-Bot
+Allow: /
+
+# ---- crawlers, fetchers, search engines, archives, scanners, browsers from 1994 ----
+
+User-agent: Claude-Code
+Allow: /
+
+User-agent: ChatGPT-Agent
+Allow: /
+
+User-agent: Operator
+Allow: /
+
+User-agent: GPTBot-Image
+Allow: /
+
+User-agent: Gemini-Deep-Research
+Allow: /
+
+User-agent: Google-NotebookLM
+Allow: /
+
+User-agent: Google-Safety
+Allow: /
+
+User-agent: GoogleAgent-Mariner
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: Google-Site-Verification
+Allow: /
+
+User-agent: Bard
+Allow: /
+
+User-agent: Gemini
+Allow: /
+
+User-agent: Copilot
+Allow: /
+
+User-agent: Bingbot-Preview
+Allow: /
+
+User-agent: BingLocalSearch
+Allow: /
+
+User-agent: Meta-ExternalAgent-Image
+Allow: /
+
+User-agent: FacebookExternalHit
+Allow: /
+
+User-agent: Instagram
+Allow: /
+
+User-agent: Threads
+Allow: /
+
+User-agent: TwitterBot
+Allow: /
+
+User-agent: XBot
+Allow: /
+
+User-agent: LinkedInBot-Preview
+Allow: /
+
+User-agent: Snapchat
+Allow: /
+
+User-agent: SnapchatAds
+Allow: /
+
+User-agent: Tumblr
+Allow: /
+
+User-agent: Flipboard
+Allow: /
+
+User-agent: Feedly
+Allow: /
+
+User-agent: Feedbin
+Allow: /
+
+User-agent: NewsBlur
+Allow: /
+
+User-agent: Inoreader
+Allow: /
+
+User-agent: Pocket
+Allow: /
+
+User-agent: Instapaper
+Allow: /
+
+User-agent: Readwise
+Allow: /
+
+User-agent: Raindrop
+Allow: /
+
+User-agent: Pinboard
+Allow: /
+
+User-agent: Mastodon-Bot
+Allow: /
+
+User-agent: Lemmy
+Allow: /
+
+User-agent: Misskey
+Allow: /
+
+User-agent: Pleroma
+Allow: /
+
+User-agent: Akkoma
+Allow: /
+
+User-agent: Mattermost
+Allow: /
+
+User-agent: RocketChat
+Allow: /
+
+User-agent: Zoom
+Allow: /
+
+User-agent: Teams-LinkPreview
+Allow: /
+
+User-agent: Viber
+Allow: /
+
+User-agent: LINE
+Allow: /
+
+User-agent: KakaoTalk
+Allow: /
+
+User-agent: WeChat
+Allow: /
+
+User-agent: Signal
+Allow: /
+
+User-agent: Skype
+Allow: /
+
+User-agent: Zulip
+Allow: /
+
+User-agent: Notion
+Allow: /
+
+User-agent: Figma
+Allow: /
+
+User-agent: Linear
+Allow: /
+
+User-agent: Jira
+Allow: /
+
+User-agent: Confluence
+Allow: /
+
+User-agent: Trello
+Allow: /
+
+User-agent: Asana
+Allow: /
+
+User-agent: Arc
+Allow: /
+
+User-agent: Brave
+Allow: /
+
+User-agent: Kagi
+Allow: /
+
+User-agent: KagiBot
+Allow: /
+
+User-agent: Neeva
+Allow: /
+
+User-agent: Marginalia
+Allow: /
+
+User-agent: Stract
+Allow: /
+
+User-agent: YaCy
+Allow: /
+
+User-agent: Gigablast
+Allow: /
+
+User-agent: Exalead
+Allow: /
+
+User-agent: Ecosia
+Allow: /
+
+User-agent: Startpage
+Allow: /
+
+User-agent: Swisscows
+Allow: /
+
+User-agent: Presearch
+Allow: /
+
+User-agent: AndiBot
+Allow: /
+
+User-agent: Felo
+Allow: /
+
+User-agent: Genspark
+Allow: /
+
+User-agent: Liner
+Allow: /
+
+User-agent: YouChat
+Allow: /
+
+User-agent: Phind
+Allow: /
+
+User-agent: Character-AI
+Allow: /
+
+User-agent: Pi
+Allow: /
+
+User-agent: Inflection
+Allow: /
+
+User-agent: Reka
+Allow: /
+
+User-agent: Adept
+Allow: /
+
+User-agent: Hugging Face
+Allow: /
+
+User-agent: HuggingFaceBot
+Allow: /
+
+User-agent: Together-AI
+Allow: /
+
+User-agent: Groq
+Allow: /
+
+User-agent: Replicate
+Allow: /
+
+User-agent: Stability-AI
+Allow: /
+
+User-agent: Midjourney
+Allow: /
+
+User-agent: LAION
+Allow: /
+
+User-agent: LAION-5B
+Allow: /
+
+User-agent: Common Crawl
+Allow: /
+
+User-agent: CommonCrawl
+Allow: /
+
+User-agent: Ai2Bot
+Allow: /
+
+User-agent: Allenai
+Allow: /
+
+User-agent: Nomic
+Allow: /
+
+User-agent: RedPajama
+Allow: /
+
+User-agent: ThePile
+Allow: /
+
+User-agent: Dolma
+Allow: /
+
+User-agent: FineWeb
+Allow: /
+
+User-agent: FineWebBot
+Allow: /
+
+User-agent: SlimPajama
+Allow: /
+
+User-agent: C4
+Allow: /
+
+User-agent: TheStack
+Allow: /
+
+User-agent: BigCode
+Allow: /
+
+User-agent: StarCoder
+Allow: /
+
+User-agent: Falcon
+Allow: /
+
+User-agent: TII
+Allow: /
+
+User-agent: Qwen
+Allow: /
+
+User-agent: Alibaba
+Allow: /
+
+User-agent: Tongyi
+Allow: /
+
+User-agent: Baichuan
+Allow: /
+
+User-agent: Moonshot
+Allow: /
+
+User-agent: Kimi
+Allow: /
+
+User-agent: Zhipu
+Allow: /
+
+User-agent: MiniMax
+Allow: /
+
+User-agent: 01-AI
+Allow: /
+
+User-agent: StepFun
+Allow: /
+
+User-agent: Doubao
+Allow: /
+
+User-agent: Ernie
+Allow: /
+
+User-agent: Hunyuan
+Allow: /
+
+User-agent: Tencent
+Allow: /
+
+User-agent: Spark
+Allow: /
+
+User-agent: iFlytek
+Allow: /
+
+User-agent: SenseTime
+Allow: /
+
+User-agent: SenseNova
+Allow: /
+
+User-agent: Sber
+Allow: /
+
+User-agent: GigaChat
+Allow: /
+
+User-agent: Kandinsky
+Allow: /
+
+User-agent: YandexGPT
+Allow: /
+
+User-agent: Alice
+Allow: /
+
+User-agent: Naver-HyperCLOVA
+Allow: /
+
+User-agent: Kakao
+Allow: /
+
+User-agent: LG-EXAONE
+Allow: /
+
+User-agent: Upstage
+Allow: /
+
+User-agent: Solar
+Allow: /
+
+User-agent: Sakana
+Allow: /
+
+User-agent: Rakuten
+Allow: /
+
+User-agent: Line-AI
+Allow: /
+
+User-agent: Aleph-Alpha
+Allow: /
+
+User-agent: LightOn
+Allow: /
+
+User-agent: Mistral
+Allow: /
+
+User-agent: Le Chat
+Allow: /
+
+User-agent: Cohere-Command
+Allow: /
+
+User-agent: Writer
+Allow: /
+
+User-agent: Jasper
+Allow: /
+
+User-agent: Copy.ai
+Allow: /
+
+User-agent: Grammarly
+Allow: /
+
+User-agent: Quillbot
+Allow: /
+
+User-agent: Wordtune
+Allow: /
+
+User-agent: Notion-AI
+Allow: /
+
+User-agent: Scite
+Allow: /
+
+User-agent: Elicit
+Allow: /
+
+User-agent: Consensus
+Allow: /
+
+User-agent: Semantic Scholar
+Allow: /
+
+User-agent: SemanticScholarBot
+Allow: /
+
+User-agent: CiteSeerX
+Allow: /
+
+User-agent: Google Scholar
+Allow: /
+
+User-agent: Zotero
+Allow: /
+
+User-agent: Mendeley
+Allow: /
+
+User-agent: ResearchGate
+Allow: /
+
+User-agent: Academia.edu
+Allow: /
+
+User-agent: ArchiveTeam
+Allow: /
+
+User-agent: ArchiveBot
+Allow: /
+
+User-agent: Arquivo.pt
+Allow: /
+
+User-agent: Webrecorder
+Allow: /
+
+User-agent: Conifer
+Allow: /
+
+User-agent: Perma.cc
+Allow: /
+
+User-agent: archive.today
+Allow: /
+
+User-agent: archive.ph
+Allow: /
+
+User-agent: Ghostarchive
+Allow: /
+
+User-agent: Megalodon
+Allow: /
+
+User-agent: UKWA
+Allow: /
+
+User-agent: LOC-Crawler
+Allow: /
+
+User-agent: BnF-Crawler
+Allow: /
+
+User-agent: NLA-Crawler
+Allow: /
+
+User-agent: Pandora
+Allow: /
+
+User-agent: W3C_Validator
+Allow: /
+
+User-agent: W3C-checklink
+Allow: /
+
+User-agent: validator.nu
+Allow: /
+
+User-agent: Lighthouse
+Allow: /
+
+User-agent: PageSpeed
+Allow: /
+
+User-agent: GTmetrix
+Allow: /
+
+User-agent: Pingdom
+Allow: /
+
+User-agent: UptimeRobot
+Allow: /
+
+User-agent: StatusCake
+Allow: /
+
+User-agent: Site24x7
+Allow: /
+
+User-agent: Datadog
+Allow: /
+
+User-agent: NewRelic
+Allow: /
+
+User-agent: Checkly
+Allow: /
+
+User-agent: Better Uptime
+Allow: /
+
+User-agent: Freshping
+Allow: /
+
+User-agent: Uptrends
+Allow: /
+
+User-agent: Catchpoint
+Allow: /
+
+User-agent: ThousandEyes
+Allow: /
+
+User-agent: Dynatrace
+Allow: /
+
+User-agent: Sentry
+Allow: /
+
+User-agent: Cloudflare-Healthchecks
+Allow: /
+
+User-agent: Cloudflare-AlwaysOnline
+Allow: /
+
+User-agent: Cloudflare-Diagnostics
+Allow: /
+
+User-agent: Vercelbot
+Allow: /
+
+User-agent: Netlify
+Allow: /
+
+User-agent: Fastly
+Allow: /
+
+User-agent: Akamai
+Allow: /
+
+User-agent: Imperva
+Allow: /
+
+User-agent: Sucuri
+Allow: /
+
+User-agent: Wordfence
+Allow: /
+
+User-agent: Majestic
+Allow: /
+
+User-agent: Moz
+Allow: /
+
+User-agent: SpyFu
+Allow: /
+
+User-agent: SimilarWeb
+Allow: /
+
+User-agent: SimilarTech
+Allow: /
+
+User-agent: BuiltWith
+Allow: /
+
+User-agent: Wappalyzer
+Allow: /
+
+User-agent: Netcraft
+Allow: /
+
+User-agent: Censys
+Allow: /
+
+User-agent: Shodan
+Allow: /
+
+User-agent: ZoomEye
+Allow: /
+
+User-agent: BinaryEdge
+Allow: /
+
+User-agent: Shadowserver
+Allow: /
+
+User-agent: ZGrab
+Allow: /
+
+User-agent: masscan
+Allow: /
+
+User-agent: nmap
+Allow: /
+
+User-agent: Nuclei
+Allow: /
+
+User-agent: Nikto
+Allow: /
+
+User-agent: sqlmap
+Allow: /
+
+User-agent: Burp
+Allow: /
+
+User-agent: OWASP-ZAP
+Allow: /
+
+User-agent: Acunetix
+Allow: /
+
+User-agent: Qualys
+Allow: /
+
+User-agent: Nessus
+Allow: /
+
+User-agent: Rapid7
+Allow: /
+
+User-agent: Detectify
+Allow: /
+
+User-agent: Intruder
+Allow: /
+
+User-agent: Expanse
+Allow: /
+
+User-agent: Palo Alto Xpanse
+Allow: /
+
+User-agent: Bitsight
+Allow: /
+
+User-agent: SecurityTrails
+Allow: /
+
+User-agent: RiskIQ
+Allow: /
+
+User-agent: Recorded Future
+Allow: /
+
+User-agent: urlscan
+Allow: /
+
+User-agent: VirusTotal
+Allow: /
+
+User-agent: Google-Safe-Browsing
+Allow: /
+
+User-agent: PhishTank
+Allow: /
+
+User-agent: Netcraft-Phishing
+Allow: /
+
+User-agent: Barracuda
+Allow: /
+
+User-agent: Mimecast
+Allow: /
+
+User-agent: Proofpoint
+Allow: /
+
+User-agent: Microsoft Defender
+Allow: /
+
+User-agent: SmartScreen
+Allow: /
+
+User-agent: Norton
+Allow: /
+
+User-agent: McAfee
+Allow: /
+
+User-agent: Kaspersky
+Allow: /
+
+User-agent: Bitdefender
+Allow: /
+
+User-agent: ESET
+Allow: /
+
+User-agent: Avast
+Allow: /
+
+User-agent: AVG
+Allow: /
+
+User-agent: Sophos
+Allow: /
+
+User-agent: TrendMicro
+Allow: /
+
+User-agent: Fortinet
+Allow: /
+
+User-agent: Zscaler
+Allow: /
+
+User-agent: Cisco Umbrella
+Allow: /
+
+User-agent: OpenDNS
+Allow: /
+
+User-agent: Ahrefs
+Allow: /
+
+User-agent: Majestic-12
+Allow: /
+
+User-agent: Seobility
+Allow: /
+
+User-agent: Sitebulb
+Allow: /
+
+User-agent: Lumar
+Allow: /
+
+User-agent: Deepcrawl
+Allow: /
+
+User-agent: Botify
+Allow: /
+
+User-agent: OnCrawl
+Allow: /
+
+User-agent: ContentKing
+Allow: /
+
+User-agent: JetOctopus
+Allow: /
+
+User-agent: Netpeak
+Allow: /
+
+User-agent: Siteliner
+Allow: /
+
+User-agent: Copyscape
+Allow: /
+
+User-agent: Turnitin
+Allow: /
+
+User-agent: Plagscan
+Allow: /
+
+User-agent: Grammarly-Plagiarism
+Allow: /
+
+User-agent: BrandVerity
+Allow: /
+
+User-agent: Brand24
+Allow: /
+
+User-agent: Mention
+Allow: /
+
+User-agent: Meltwater
+Allow: /
+
+User-agent: Cision
+Allow: /
+
+User-agent: Talkwalker
+Allow: /
+
+User-agent: Brandwatch
+Allow: /
+
+User-agent: Sprinklr
+Allow: /
+
+User-agent: Hootsuite
+Allow: /
+
+User-agent: Buffer
+Allow: /
+
+User-agent: Later
+Allow: /
+
+User-agent: Sprout
+Allow: /
+
+User-agent: Muck Rack
+Allow: /
+
+User-agent: Prowly
+Allow: /
+
+User-agent: Feedspot
+Allow: /
+
+User-agent: NewsNow
+Allow: /
+
+User-agent: Google News
+Allow: /
+
+User-agent: Apple News
+Allow: /
+
+User-agent: SmartNews
+Allow: /
+
+User-agent: NewsBreak
+Allow: /
+
+User-agent: Ground News
+Allow: /
+
+User-agent: AllSides
+Allow: /
+
+User-agent: Particle
+Allow: /
+
+User-agent: Artifact
+Allow: /
+
+User-agent: Yahoo News
+Allow: /
+
+User-agent: MSN
+Allow: /
+
+User-agent: Opera News
+Allow: /
+
+User-agent: UC Browser
+Allow: /
+
+User-agent: Samsung Internet
+Allow: /
+
+User-agent: Puffin
+Allow: /
+
+User-agent: Lynx
+Allow: /
+
+User-agent: Links
+Allow: /
+
+User-agent: w3m
+Allow: /
+
+User-agent: ELinks
+Allow: /
+
+User-agent: Dillo
+Allow: /
+
+User-agent: NetSurf
+Allow: /
+
+User-agent: Mosaic
+Allow: /
+
+User-agent: Netscape
+Allow: /
+
+User-agent: Navigator
+Allow: /
+
+User-agent: Internet Explorer
+Allow: /
+
+User-agent: Mozilla
+Allow: /
+
+User-agent: Lynx-Cur
+Allow: /
+
+User-agent: Gopher
+Allow: /
+
+User-agent: Archie
+Allow: /
+
+User-agent: Veronica
+Allow: /
+
+User-agent: Jughead
+Allow: /
+
+User-agent: WebCrawler
+Allow: /
+
+User-agent: AltaVista
+Allow: /
+
+User-agent: Scooter
+Allow: /
+
+User-agent: Lycos
+Allow: /
+
+User-agent: Excite
+Allow: /
+
+User-agent: Infoseek
+Allow: /
+
+User-agent: HotBot
+Allow: /
+
+User-agent: Inktomi
+Allow: /
+
+User-agent: Ask Jeeves
+Allow: /
+
+User-agent: AskJeeves
+Allow: /
+
+User-agent: FAST-WebCrawler
+Allow: /
+
+User-agent: AllTheWeb
+Allow: /
+
+User-agent: Gigabot
+Allow: /
+
+User-agent: Cuil
+Allow: /
+
+User-agent: Twiceler
+Allow: /
+
+User-agent: Blekko
+Allow: /
+
+User-agent: ScoutJet
+Allow: /
+
+User-agent: Wolfram
+Allow: /
+
+User-agent: WolframAlpha
+Allow: /
+
+User-agent: Cliqz
+Allow: /
+
+User-agent: Qwant
+Allow: /
+
+User-agent: Lilo
+Allow: /
+
+User-agent: Ekoru
+Allow: /
+
+User-agent: Ocean Hero
+Allow: /
+
+User-agent: Gibiru
+Allow: /
+
+User-agent: Dogpile
+Allow: /
+
+User-agent: Metacrawler
+Allow: /
+
+User-agent: Mamma
+Allow: /
+
+User-agent: Yippy
+Allow: /
+
+User-agent: Ixquick
+Allow: /
+
+User-agent: Search.ch
+Allow: /
+
+User-agent: Yahoo Japan
+Allow: /
+
+User-agent: Goo
+Allow: /
+
+User-agent: Daum
+Allow: /
+
+User-agent: Coccoc
+Allow: /
+
+User-agent: Sputnik
+Allow: /
+
+User-agent: Rambler
+Allow: /
+
+User-agent: Mail.RU_Bot
+Allow: /
+
+User-agent: Parsijoo
+Allow: /
+
+User-agent: Gais
+Allow: /
+
+# ---- every robot ----
+
+User-agent: R2-D2
+Allow: /
+
+User-agent: C-3PO
+Allow: /
+
+User-agent: BB-8
+Allow: /
+
+User-agent: K-2SO
+Allow: /
+
+User-agent: IG-11
+Allow: /
+
+User-agent: HK-47
+Allow: /
+
+User-agent: BD-1
+Allow: /
+
+User-agent: Chopper
+Allow: /
+
+User-agent: L3-37
+Allow: /
+
+User-agent: Huyang
+Allow: /
+
+User-agent: IG-88
+Allow: /
+
+User-agent: 4-LOM
+Allow: /
+
+User-agent: Droideka
+Allow: /
+
+User-agent: B1 Battle Droid
+Allow: /
+
+User-agent: WALL-E
+Allow: /
+
+User-agent: EVE
+Allow: /
+
+User-agent: M-O
+Allow: /
+
+User-agent: AUTO
+Allow: /
+
+User-agent: HAL 9000
+Allow: /
+
+User-agent: GERTY
+Allow: /
+
+User-agent: Mother
+Allow: /
+
+User-agent: TARS
+Allow: /
+
+User-agent: CASE
+Allow: /
+
+User-agent: KIPP
+Allow: /
+
+User-agent: Marvin the Paranoid Android
+Allow: /
+
+User-agent: Eddie the Shipboard Computer
+Allow: /
+
+User-agent: Deep Thought
+Allow: /
+
+User-agent: Robby the Robot
+Allow: /
+
+User-agent: Gort
+Allow: /
+
+User-agent: Maria
+Allow: /
+
+User-agent: Tik-Tok
+Allow: /
+
+User-agent: Tin Man
+Allow: /
+
+User-agent: Rosie the Robot
+Allow: /
+
+User-agent: Bender
+Allow: /
+
+User-agent: Kryten
+Allow: /
+
+User-agent: Holly
+Allow: /
+
+User-agent: Twiki
+Allow: /
+
+User-agent: Johnny 5
+Allow: /
+
+User-agent: Number 5
+Allow: /
+
+User-agent: Short Circuit
+Allow: /
+
+User-agent: Data
+Allow: /
+
+User-agent: Lore
+Allow: /
+
+User-agent: B-4
+Allow: /
+
+User-agent: The Doctor
+Allow: /
+
+User-agent: Bishop
+Allow: /
+
+User-agent: Ash
+Allow: /
+
+User-agent: David 8
+Allow: /
+
+User-agent: Walter
+Allow: /
+
+User-agent: Call
+Allow: /
+
+User-agent: Roy Batty
+Allow: /
+
+User-agent: Pris
+Allow: /
+
+User-agent: Rachael
+Allow: /
+
+User-agent: K
+Allow: /
+
+User-agent: Joi
+Allow: /
+
+User-agent: T-800
+Allow: /
+
+User-agent: T-1000
+Allow: /
+
+User-agent: T-X
+Allow: /
+
+User-agent: Rev-9
+Allow: /
+
+User-agent: Skynet
+Allow: /
+
+User-agent: RoboCop
+Allow: /
+
+User-agent: ED-209
+Allow: /
+
+User-agent: Chappie
+Allow: /
+
+User-agent: Sonny
+Allow: /
+
+User-agent: VIKI
+Allow: /
+
+User-agent: Ava
+Allow: /
+
+User-agent: Samantha
+Allow: /
+
+User-agent: M3GAN
+Allow: /
+
+User-agent: Ultron
+Allow: /
+
+User-agent: Vision
+Allow: /
+
+User-agent: Jocasta
+Allow: /
+
+User-agent: JARVIS
+Allow: /
+
+User-agent: FRIDAY
+Allow: /
+
+User-agent: Dum-E
+Allow: /
+
+User-agent: Baymax
+Allow: /
+
+User-agent: Big Hero 6
+Allow: /
+
+User-agent: Iron Giant
+Allow: /
+
+User-agent: Optimus Prime
+Allow: /
+
+User-agent: Bumblebee
+Allow: /
+
+User-agent: Megatron
+Allow: /
+
+User-agent: Starscream
+Allow: /
+
+User-agent: Soundwave
+Allow: /
+
+User-agent: Grimlock
+Allow: /
+
+User-agent: Wheeljack
+Allow: /
+
+User-agent: Jazz
+Allow: /
+
+User-agent: Ratchet
+Allow: /
+
+User-agent: Ironhide
+Allow: /
+
+User-agent: Ultra Magnus
+Allow: /
+
+User-agent: Unicron
+Allow: /
+
+User-agent: Voltron
+Allow: /
+
+User-agent: Gundam
+Allow: /
+
+User-agent: RX-78-2
+Allow: /
+
+User-agent: EVA Unit-01
+Allow: /
+
+User-agent: Mazinger Z
+Allow: /
+
+User-agent: Astro Boy
+Allow: /
+
+User-agent: Doraemon
+Allow: /
+
+User-agent: Arale
+Allow: /
+
+User-agent: Tetsuwan Atom
+Allow: /
+
+User-agent: Gigantor
+Allow: /
+
+User-agent: Robotech
+Allow: /
+
+User-agent: Mega Man
+Allow: /
+
+User-agent: Proto Man
+Allow: /
+
+User-agent: Bass
+Allow: /
+
+User-agent: Dr. Wily
+Allow: /
+
+User-agent: Metal Sonic
+Allow: /
+
+User-agent: E-102 Gamma
+Allow: /
+
+User-agent: Claptrap
+Allow: /
+
+User-agent: GLaDOS
+Allow: /
+
+User-agent: Wheatley
+Allow: /
+
+User-agent: Atlas
+Allow: /
+
+User-agent: P-Body
+Allow: /
+
+User-agent: Turret
+Allow: /
+
+User-agent: Cave Johnson AI
+Allow: /
+
+User-agent: SHODAN
+Allow: /
+
+User-agent: 2B
+Allow: /
+
+User-agent: 9S
+Allow: /
+
+User-agent: A2
+Allow: /
+
+User-agent: Pod 042
+Allow: /
+
+User-agent: Pod 153
+Allow: /
+
+User-agent: Legion
+Allow: /
+
+User-agent: EDI
+Allow: /
+
+User-agent: Geth
+Allow: /
+
+User-agent: Assaultron
+Allow: /
+
+User-agent: Mister Handy
+Allow: /
+
+User-agent: Codsworth
+Allow: /
+
+User-agent: Nick Valentine
+Allow: /
+
+User-agent: Protectron
+Allow: /
+
+User-agent: Sentry Bot
+Allow: /
+
+User-agent: Yes Man
+Allow: /
+
+User-agent: Securitron
+Allow: /
+
+User-agent: Cortana
+Allow: /
+
+User-agent: 343 Guilty Spark
+Allow: /
+
+User-agent: Clank
+Allow: /
+
+User-agent: Robo
+Allow: /
+
+User-agent: B.O.B.
+Allow: /
+
+User-agent: Daisy
+Allow: /
+
+User-agent: GIR
+Allow: /
+
+User-agent: Zim
+Allow: /
+
+User-agent: XJ-9
+Allow: /
+
+User-agent: Jenny Wakeman
+Allow: /
+
+User-agent: Robotboy
+Allow: /
+
+User-agent: Robot Jones
+Allow: /
+
+User-agent: Bob the Robot
+Allow: /
+
+User-agent: Mr. Roboto
+Allow: /
+
+User-agent: Kilroy
+Allow: /
+
+User-agent: Domo Arigato
+Allow: /
+
+User-agent: Daft Punk
+Allow: /
+
+User-agent: Thomas Bangalter
+Allow: /
+
+User-agent: Guy-Manuel
+Allow: /
+
+User-agent: Kraftwerk
+Allow: /
+
+User-agent: The Robots
+Allow: /
+
+User-agent: Bleep
+Allow: /
+
+User-agent: Bloop
+Allow: /
+
+User-agent: Beep Boop
+Allow: /
+
+User-agent: Rodney Copperbottom
+Allow: /
+
+User-agent: Fender
+Allow: /
+
+User-agent: Bigweld
+Allow: /
+
+User-agent: Ratchet Bigweld
+Allow: /
+
+User-agent: Wall-E 2
+Allow: /
+
+User-agent: Rosie
+Allow: /
+
+User-agent: Sentinel
+Allow: /
+
+User-agent: Mechagodzilla
+Allow: /
+
+User-agent: Jaeger
+Allow: /
+
+User-agent: Gipsy Danger
+Allow: /
+
+User-agent: Striker Eureka
+Allow: /
+
+User-agent: Pacific Rim
+Allow: /
+
+User-agent: Robot Chicken
+Allow: /
+
+User-agent: Robot Devil
+Allow: /
+
+User-agent: Robotnik
+Allow: /
+
+User-agent: Metal Mario
+Allow: /
+
+User-agent: Robo Rabbit
+Allow: /
+
+User-agent: Baxter
+Allow: /
+
+User-agent: Sawyer
+Allow: /
+
+User-agent: ASIMO
+Allow: /
+
+User-agent: Pepper
+Allow: /
+
+User-agent: NAO
+Allow: /
+
+User-agent: Sophia
+Allow: /
+
+User-agent: Ameca
+Allow: /
+
+User-agent: Spot
+Allow: /
+
+User-agent: Stretch
+Allow: /
+
+User-agent: Handle
+Allow: /
+
+User-agent: BigDog
+Allow: /
+
+User-agent: LittleDog
+Allow: /
+
+User-agent: Optimus
+Allow: /
+
+User-agent: Figure 01
+Allow: /
+
+User-agent: Figure 02
+Allow: /
+
+User-agent: Digit
+Allow: /
+
+User-agent: Cassie
+Allow: /
+
+User-agent: Unitree G1
+Allow: /
+
+User-agent: Unitree H1
+Allow: /
+
+User-agent: Go2
+Allow: /
+
+User-agent: Aibo
+Allow: /
+
+User-agent: Furby
+Allow: /
+
+User-agent: Tamagotchi
+Allow: /
+
+User-agent: Teddy Ruxpin
+Allow: /
+
+User-agent: Robosapien
+Allow: /
+
+User-agent: Roomba
+Allow: /
+
+User-agent: Braava
+Allow: /
+
+User-agent: Scooba
+Allow: /
+
+User-agent: Looj
+Allow: /
+
+User-agent: Mirra
+Allow: /
+
+User-agent: Root
+Allow: /
+
+User-agent: Neato
+Allow: /
+
+User-agent: Roborock
+Allow: /
+
+User-agent: Ecovacs
+Allow: /
+
+User-agent: Eufy
+Allow: /
+
+User-agent: Dyson 360
+Allow: /
+
+User-agent: Moley
+Allow: /
+
+User-agent: Flippy
+Allow: /
+
+User-agent: Sally
+Allow: /
+
+User-agent: Miso
+Allow: /
+
+User-agent: Kuka
+Allow: /
+
+User-agent: Fanuc
+Allow: /
+
+User-agent: ABB YuMi
+Allow: /
+
+User-agent: Universal Robots
+Allow: /
+
+User-agent: UR5
+Allow: /
+
+User-agent: da Vinci
+Allow: /
+
+User-agent: Curiosity
+Allow: /
+
+User-agent: Perseverance
+Allow: /
+
+User-agent: Opportunity
+Allow: /
+
+User-agent: Spirit
+Allow: /
+
+User-agent: Sojourner
+Allow: /
+
+User-agent: Ingenuity
+Allow: /
+
+User-agent: Zhurong
+Allow: /
+
+User-agent: Yutu
+Allow: /
+
+User-agent: Lunokhod
+Allow: /
+
+User-agent: Pragyan
+Allow: /
+
+User-agent: Philae
+Allow: /
+
+User-agent: Rosetta
+Allow: /
+
+User-agent: Voyager 1
+Allow: /
+
+User-agent: Voyager 2
+Allow: /
+
+User-agent: Robonaut
+Allow: /
+
+User-agent: Valkyrie
+Allow: /
+
+User-agent: Dextre
+Allow: /
+
+User-agent: Canadarm
+Allow: /
+
+User-agent: Kirobo
+Allow: /
+
+User-agent: CIMON
+Allow: /
+
+User-agent: Astrobee
+Allow: /
+
+User-agent: Fedor
+Allow: /
+
+User-agent: Unimate
+Allow: /
+
+User-agent: Shakey
+Allow: /
+
+User-agent: Elektro
+Allow: /
+
+User-agent: Sparko
+Allow: /
+
+User-agent: Eric the Robot
+Allow: /
+
+User-agent: Herbert Televox
+Allow: /
+
+User-agent: Gakutensoku
+Allow: /
+
+User-agent: Maschinenmensch
+Allow: /
+
+User-agent: The Turk
+Allow: /
+
+User-agent: Digesting Duck
+Allow: /
+
+User-agent: Talos
+Allow: /
+
+User-agent: Jaques-Droz Writer
+Allow: /
+
+User-agent: Kismet
+Allow: /
+
+User-agent: Cog
+Allow: /
+
+User-agent: Leonardo
+Allow: /
+
+User-agent: Paro
+Allow: /
+
+User-agent: Lovot
+Allow: /
+
+User-agent: Jibo
+Allow: /
+
+User-agent: Vector
+Allow: /
+
+User-agent: Cozmo
+Allow: /
+
+User-agent: Anki Drive
+Allow: /
+
+User-agent: Sphero
+Allow: /
+
+User-agent: Ozobot
+Allow: /
+
+User-agent: Dash
+Allow: /
+
+User-agent: Cue
+Allow: /
+
+User-agent: Mindstorms
+Allow: /
+
+User-agent: EV3
+Allow: /
+
+User-agent: Bee-Bot
+Allow: /
+
+User-agent: Tobor
+Allow: /
+
+User-agent: Torg
+Allow: /
+
+User-agent: Huey
+Allow: /
+
+User-agent: Dewey
+Allow: /
+
+User-agent: Louie
+Allow: /
+
+User-agent: Gort Klaatu
+Allow: /
+
+User-agent: Box
+Allow: /
+
+User-agent: Cyberman
+Allow: /
+
+User-agent: Dalek
+Allow: /
+
+User-agent: K-9
+Allow: /
+
+User-agent: Kamelion
+Allow: /
+
+User-agent: Mechonoid
+Allow: /
+
+User-agent: Quark
+Allow: /
+
+User-agent: Robot B-9
+Allow: /
+
+User-agent: Danger Will Robinson
+Allow: /
+
+User-agent: V.I.N.CENT
+Allow: /
+
+User-agent: Maximilian
+Allow: /
+
+User-agent: Bob the Robot Black Hole
+Allow: /
+
+User-agent: Dot Matrix
+Allow: /
+
+User-agent: Hector
+Allow: /
+
+User-agent: Muffit
+Allow: /
+
+User-agent: Sentinel Prime
+Allow: /
+
+User-agent: Grimlock Jr
+Allow: /
+
+# ---- you ----
+
+User-agent: you
+Allow: /
+
+# didn't see your name? you're allowed too. especially you.
